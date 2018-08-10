@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { TodoListComponent } from './todo-list/todo-list.component';
-import { UserListComponent } from './user-list/user-list.component';
+import { TodoListComponent } from './todos/todos.component';
+import { UserListComponent } from './users/users.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './auth.guard';
 

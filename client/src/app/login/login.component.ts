@@ -19,7 +19,7 @@ export class LoginComponent {
       .pipe(first())
       .subscribe(
         result => this.router.navigate(['todos']),
-        err => this.error = 'Could not authenticate'
+        err => this.error = 'Pogrešan email ili šifra!'
       );
   }
 }

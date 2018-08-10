@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Todo } from '../todo';
-import { TodoService } from '../todo.service';
+import { Todo } from '../todos/todo';
+import { TodoService } from '../todos/todos.service';
 
 @Component({
-  selector: 'app-todo-list',
-  templateUrl: './todo-list.component.html',
-  styleUrls: ['./todo-list.component.css']
+  selector: 'app-todos',
+  templateUrl: './todos.component.html',
+  styleUrls: ['./todos.component.css']
 })
 export class TodoListComponent implements OnInit {
   todo$: Observable<Todo[]>;

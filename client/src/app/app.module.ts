@@ -6,10 +6,10 @@ import { JwtModule } from '@auth0/angular-jwt';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TodoListComponent } from './todo-list/todo-list.component';
-import { UserListComponent } from './user-list/user-list.component';
-import { TodoService } from './todo.service';
-import { UserService } from './user.service';
+import { TodoListComponent } from './todos/todos.component';
+import { UserListComponent } from './users/users.component';
+import { TodoService } from './todos/todos.service';
+import { UserService } from './users/users.service';
 import { LoginComponent } from './login/login.component';
 import { AuthService } from './auth.service';
 import { AuthGuard } from './auth.guard';

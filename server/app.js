@@ -1,9 +1,11 @@
 const _ = require('lodash');
-const express = require('express')
-const app = express()
+const express = require('express');
+const app = express();
 const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
+const jwt_secret = 'todo-app-super-shared-secret';
 const expressJwt = require('express-jwt');
+const usersService = require('../server/services/users');
 
 var TODOS = [
     { 'id': 1, 'user_id': 1, 'name': "Get Milk", 'completed': false },
@@ -11,11 +13,7 @@ var TODOS = [
     { 'id': 3, 'user_id': 2, 'name': "Buy flowers for wife", 'completed': false },
     { 'id': 4, 'user_id': 3, 'name': "Finish Angular JWT Todo App", 'completed': false },
 ];
-var USERS = [
-    { 'id': 1, 'username': 'jemma' },
-    { 'id': 2, 'username': 'paul' },
-    { 'id': 3, 'username': 'sebastian' },
-];
+
 function getTodos(userID) {
     var todos = _.filter(TODOS, ['user_id', userID]);
 
@@ -26,24 +24,27 @@ function getTodo(todoID) {
 
     return todo;
 }
-function getUsers() {
-    return USERS;
-}
 
 app.use(bodyParser.json());
-app.use(expressJwt({secret: 'todo-app-super-shared-secret'}).unless({path: ['/api/auth']}));
+app.use(expressJwt({secret: jwt_secret}).unless({path: ['/api/auth']}));
 
 app.get('/', function (req, res) {
     res.send('Angular JWT Todo API Server')
 });
-app.post('/api/auth', function(req, res) {
-    const body = req.body;
-
-    const user = USERS.find(user => user.username == body.username);
-    if(!user || body.password != 'todo') return res.sendStatus(401);
-    
-    var token = jwt.sign({userID: user.id}, 'todo-app-super-shared-secret', {expiresIn: '2h'});
-    res.send({token});
+app.post('/api/auth', async function(req, res) {
+    try {      
+        const user = await usersService.getUserByUsername(req.body.username);     
+        if (!user || req.body.password != user.password) {
+            return res.sendStatus(401);
+        }        
+        var token = jwt.sign({ userID: user._id }, jwt_secret, { expiresIn: '2h' });     
+        res.type("json");
+        res.send({ token, username: user.username });
+    }
+    catch(exception) {
+        console.log(exception);
+        res.sendStatus(401)
+    }
 });
 app.get('/api/todos', function (req, res) {
     res.type("json");
@@ -54,9 +55,10 @@ app.get('/api/todos/:id', function (req, res) {
     res.type("json");
     res.send(getTodo(todoID));
 });
-app.get('/api/users', function (req, res) {
+app.get('/api/users', async function (req, res) {   
+    const users = await usersService.getAllUsers();
     res.type("json");
-    res.send(getUsers());
+    res.send(users);
 });
 
 app.listen(4000, function () {

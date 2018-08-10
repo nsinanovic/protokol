@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { User } from './user';
+import { User } from '../users/user';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +8,7 @@ import { User } from './user';
 export class UserService {
   constructor(private http: HttpClient) { }
 
-  getUsers() {
+  getAllUsers() {
     return this.http.get<User[]>('/api/users');
   }
 }

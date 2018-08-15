@@ -1,11 +1,11 @@
 const mongo_driver = require('mongodb');
 const mongo_client = mongo_driver.MongoClient;
-const mongo_server = 'mongodb://localhost:27017';
-const mongo_database = 'protokol';
+const mongo_server = 'mongodb+srv://protokol-jkpradnik-user:Mq5tQD_hXQ-p@protokol-jkpradnik-cluster-3ch0t.mongodb.net';
+const mongo_database = 'protokol-jkpradnik-database';
 
 async function connect() {
     try {
-        const db = await mongo_driver.connect(mongo_server, { useNewUrlParser: true } ); 
+        const db = await mongo_client.connect(mongo_server, { useNewUrlParser: true } ); 
         const data = db.db(mongo_database);
         return data;
     }

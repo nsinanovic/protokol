@@ -9,34 +9,36 @@
   <h4>Učitavanje...</h4>
 </div>
 
-<table class="table table-bordered" cellspacing="0" width="100%" *ngIf="users">
-  <thead class="thead-light">
-    <tr>
-      <th>Ime</th>
-      <th>Prezime</th>
-      <th>Email</th>
-      <th>
-        <a href="#" class="btn btn-icon btn-pill btn-margin btn-success pull-right" data-toggle="tooltip" title="Dodaj">
-          <i class="fa fa-fw fa-plus"></i>
-        </a>
-      </th>
-    </tr>
-  </thead>
-  <tbody>
+<div class="scrollable">
+  <table class="table table-bordered table-white" cellspacing="0" width="100%" *ngIf="users">
+    <thead>
+      <tr>
+        <th>Ime</th>
+        <th>Prezime</th>
+        <th>Email</th>
+        <th>
+          <a href="#" class="btn btn-icon btn-pill btn-margin btn-success pull-right" data-toggle="tooltip" title="Dodaj">
+            <i class="fa fa-fw fa-plus"></i>
+          </a>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
 
-    <tr *ngFor="let user of users">
-      <td>{{user.firstname}}</td>
-      <td>{{user.lastname}}</td>
-      <td>{{user.username}}</td>
-      <td>
-        <a href="#" class="btn btn-icon btn-pill btn-margin btn-primary pull-right" data-toggle="tooltip" title="Uredi">
-          <i class="fa fa-fw fa-edit"></i>
-        </a>
-        <a href="#" class="btn btn-icon btn-pill btn-margin btn-danger pull-right" data-toggle="tooltip" title="Izbriši">
-          <i class="fa fa-fw fa-trash"></i>
-        </a>
-      </td>
-    </tr>
+      <tr *ngFor="let user of users">
+        <td>{{user.firstname}}</td>
+        <td>{{user.lastname}}</td>
+        <td>{{user.username}}</td>
+        <td>
+          <a href="#" class="btn btn-icon btn-pill btn-margin btn-primary pull-right" data-toggle="tooltip" title="Uredi">
+            <i class="fa fa-fw fa-edit"></i>
+          </a>
+          <a href="#" class="btn btn-icon btn-pill btn-margin btn-danger pull-right" data-toggle="tooltip" title="Izbriši">
+            <i class="fa fa-fw fa-trash"></i>
+          </a>
+        </td>
+      </tr>
 
-  </tbody>
-</table>
+    </tbody>
+  </table>
+</div>

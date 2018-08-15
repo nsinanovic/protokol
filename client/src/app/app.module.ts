@@ -6,13 +6,14 @@ import { JwtModule } from '@auth0/angular-jwt';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TodoListComponent } from './todos/todos.component';
-import { UserListComponent } from './users/users.component';
-import { TodoService } from './todos/todos.service';
-import { UserService } from './users/users.service';
+import { StatisticsComponent } from './statistics/statistics.component';
+import { UsersComponent } from './users/users.component';
+import { StatisticsService } from './statistics/statistics.service';
+import { UsersService } from './users/users.service';
 import { LoginComponent } from './login/login.component';
 import { AuthService } from './auth.service';
 import { AuthGuard } from './auth.guard';
+import { GoogleChartsModule } from 'angular-google-charts';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -21,8 +22,8 @@ export function tokenGetter() {
 @NgModule({
   declarations: [
     AppComponent,
-    TodoListComponent,
-    UserListComponent,
+    StatisticsComponent,
+    UsersComponent,
     LoginComponent
   ],
   imports: [
@@ -36,11 +37,12 @@ export function tokenGetter() {
         whitelistedDomains: ['localhost:4000'],
         blacklistedRoutes: ['localhost:4000/api/auth']
       }
-    })
+    }),
+    GoogleChartsModule,
   ],
   providers: [
-    TodoService,
-    UserService,
+    StatisticsService,
+    UsersService,
     AuthService,
     AuthGuard
   ],

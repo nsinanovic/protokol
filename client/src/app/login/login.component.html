@@ -1,6 +1,6 @@
 <p class="text-danger" *ngIf="error">{{error}}</p>
 
-<form (ngSubmit)="submit()">
+<form (ngSubmit)="submit()" *ngIf="!auth.loggedIn">
 
   <div class="form-group col-3">
     <label for="username">Email</label>

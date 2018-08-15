@@ -18,7 +18,7 @@ export class LoginComponent {
     this.auth.login(this.username, this.password)
       .pipe(first())
       .subscribe(
-        result => this.router.navigate(['todos']),
+        result => this.router.navigate(['statistics']),
         err => this.error = 'Pogrešan email ili šifra!'
       );
   }

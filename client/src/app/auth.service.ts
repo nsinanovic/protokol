@@ -8,11 +8,11 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   login(username: string, password: string): Observable<boolean> {
-    return this.http.post<{token: string, username: string}>('/api/auth', {username: username, password: password})
+    return this.http.post<{token: string, fullname: string}>('/api/auth', {username: username, password: password})
       .pipe(
         map(result => {
           localStorage.setItem('access_token', result.token);
-          localStorage.setItem('logged_user', result.username);
+          localStorage.setItem('logged_user', result.fullname);
           return true;
         })
       );

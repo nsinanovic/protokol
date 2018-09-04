@@ -3,18 +3,23 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { JwtModule } from '@auth0/angular-jwt';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { PasswordsComponent } from './passwords/passwords.component';
-import { UsersComponent } from './users/users.component';
-import { PasswordsService } from './passwords/passwords.service';
-import { UsersService } from './users/users.service';
-import { LoginComponent } from './login/login.component';
-import { AuthService } from './auth.service';
-import { AuthGuard } from './auth.guard';
 import { GoogleChartsModule } from 'angular-google-charts';
 import { DataTableModule } from "angular-6-datatable";
+import { AppRoutingModule } from './app-routing.module';
+
+
+import { AppComponent } from './app.component';
+import { LoginComponent } from './login/login.component';
+import { UsersComponent } from './users/users.component';
+import { PasswordsComponent } from './passwords/passwords.component';
+import { ProjectsComponent } from './projects/projects.component';
+
+import { AuthService } from './auth.service';
+import { AuthGuard } from './auth.guard';
+import { UsersService } from './users/users.service';
+import { PasswordsService } from './passwords/passwords.service';
+import { ProjectsService } from './projects/projects.service';
+
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -25,7 +30,8 @@ export function tokenGetter() {
     AppComponent,
     PasswordsComponent,
     UsersComponent,
-    LoginComponent
+    LoginComponent,
+    ProjectsComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,10 +49,11 @@ export function tokenGetter() {
     DataTableModule,
   ],
   providers: [
+    AuthService,
+    AuthGuard,
     PasswordsService,
     UsersService,
-    AuthService,
-    AuthGuard
+    ProjectsService,
   ],
   bootstrap: [AppComponent]
 })

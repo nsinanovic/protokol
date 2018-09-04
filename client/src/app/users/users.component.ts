@@ -10,12 +10,18 @@ import { UsersService } from './users.service';
 })
 export class UsersComponent implements OnInit {
   users: Array<User>;
-
-  constructor(private usersService: UsersService) { }
+  newUser: User;
+  constructor(private usersService: UsersService) {
+    this.newUser = new User;
+  }
 
   ngOnInit() {
-    this.usersService.getAllUsers().subscribe((data:  Array<User>) => {
-      this.users = data;     
+    this.usersService.getAllUsers().subscribe((data: Array<User>) => {
+      this.users = data;
     });
+  }
+
+  public onFileChanged(event: any) {
+    this.newUser.picture = event.target.files[0];   
   }
 }

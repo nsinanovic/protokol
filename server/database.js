@@ -1,7 +1,8 @@
 const mongo_driver = require('mongodb');
 const mongo_client = mongo_driver.MongoClient;
-const mongo_server = 'mongodb+srv://protokol-jkpradnik-user:Mq5tQD_hXQ-p@protokol-jkpradnik-cluster-3ch0t.mongodb.net';
-const mongo_database = 'protokol-jkpradnik-database';
+//const mongo_server = 'mongodb+srv://protokol-jkpradnik-user:Mq5tQD_hXQ-p@protokol-jkpradnik-cluster-3ch0t.mongodb.net';
+const mongo_server = 'mongodb://localhost:27017';
+const mongo_database = 'password-manager-db';
 
 async function connect() {
     try {

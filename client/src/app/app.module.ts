@@ -6,14 +6,15 @@ import { JwtModule } from '@auth0/angular-jwt';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { StatisticsComponent } from './statistics/statistics.component';
+import { PasswordsComponent } from './passwords/passwords.component';
 import { UsersComponent } from './users/users.component';
-import { StatisticsService } from './statistics/statistics.service';
+import { PasswordsService } from './passwords/passwords.service';
 import { UsersService } from './users/users.service';
 import { LoginComponent } from './login/login.component';
 import { AuthService } from './auth.service';
 import { AuthGuard } from './auth.guard';
 import { GoogleChartsModule } from 'angular-google-charts';
+import { DataTableModule } from "angular-6-datatable";
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -22,7 +23,7 @@ export function tokenGetter() {
 @NgModule({
   declarations: [
     AppComponent,
-    StatisticsComponent,
+    PasswordsComponent,
     UsersComponent,
     LoginComponent
   ],
@@ -39,9 +40,10 @@ export function tokenGetter() {
       }
     }),
     GoogleChartsModule,
+    DataTableModule,
   ],
   providers: [
-    StatisticsService,
+    PasswordsService,
     UsersService,
     AuthService,
     AuthGuard
